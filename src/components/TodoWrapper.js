@@ -8,10 +8,10 @@ uuidv4();
 const TodoWrapper = () => {
   const [todos, setTodos] = useState([]);
 
-  const addTodo = (todo) => {
+  const addTodo = (description) => {
     setTodos([
       ...todos,
-      { id: uuidv4(), task: todo, completed: false, isEditing: false },
+      { id: uuidv4(), description, completed: false, isEditing: false },
     ]);
     console.log(todos);
   };
@@ -36,10 +36,12 @@ const TodoWrapper = () => {
     );
   };
 
-  const editTask = (task, id) => {
+  const editTask = (description, id) => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
+        todo.id === id
+          ? { ...todo, description, isEditing: !todo.isEditing }
+          : todo
       )
     );
   };
